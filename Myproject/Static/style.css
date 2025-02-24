@@ -1,0 +1,211 @@
+/* Reset de márgenes y padding para todos los elementos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Para que el padding y el borde se incluyan en el tamaño total */
+}
+
+/* Estilos generales */
+body {
+    font-family: 'Open', sans-serif;
+    display: block;
+    padding-bottom: 50px; /* Añadido para evitar que el contenido quede oculto debajo del footer */
+    overflow-x: hidden; /* Para evitar desplazamiento horizontal no deseado */
+    overflow-y: hidden;
+}
+
+
+
+
+/* Fuentes personalizadas */
+@font-face {
+    font-family: 'Open';
+    src: url('/static/fuentes/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'boli';
+    src: url('/static/fuentes/Mv_boli/mvboli.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Swiss721';
+    src: url('/static/fuentes/fuente_swiss721/Swiss721Bold.ttf') format('truetype');
+}
+
+/* Estilos para el contenedor del slider superior */
+.slider-container {
+    white-space: nowrap;
+    background-color: rgb(123, 22, 52);
+    position: fixed; /* Fijo en la parte superior */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    z-index: 10;
+}
+
+/* Estilos para el texto del slider superior */
+.Front {
+    margin-left: 440px;
+    color: #f9f9f9;
+    font-family: 'open';
+}
+
+/* Estilos generales para el slider (footer) */
+.slider-footer {
+    white-space: unset;
+    background-color: rgb(120, 18, 49);
+    position: fixed; /* Fijo en la parte inferior */
+    bottom: 0; /* Cambiado a 'bottom: 0' para que se fije en el pie */
+    left: 0;
+    width: 100%;
+    height: 40px; /* Ajusté la altura para que no sea tan pequeña */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 5px 0;
+    z-index: 10;
+    overflow: hidden;
+}
+
+/* Contenedor que agrupa todos los textos dentro del slider footer */
+.slider-wrapper {
+    display: flex;
+    animation: scroll 30s linear infinite; /* Animación para desplazar los textos */
+    flex-wrap: nowrap;
+}
+
+/* Cada elemento dentro del slider */
+.slider {
+    font-family: 'boli';
+    font-size: 18px;
+    color: white;
+    padding: 0 400px; /* Espaciado entre los elementos */
+    white-space: nowrap;
+    flex-shrink: 0; /* Para evitar que los elementos se encojan */
+}
+
+/* Imagen dentro del slider */
+.slider img {
+    max-width: 100px;
+    height: auto;
+    margin-left: 40px; /* Añadí un margen a la izquierda para la imagen */
+}
+
+/* Animación para el desplazamiento de los textos */
+@keyframes scroll {
+    0% {
+        transform: translateX(10%); /* Comienza desde la derecha */
+    }
+    100% {
+        transform: translateX(-100%); /* Se mueve hacia la izquierda */
+    }
+}
+
+/* Estilos para los formularios */
+.input_user {
+    font-family: 'Open';
+    justify-content: flex-end;
+    margin-top: 14%;
+    padding-left: 37%;
+    padding-right: 10%;
+    margin-bottom: 20%;
+}
+
+h3 {
+    font-weight: bolder;
+    font-size: 20px;
+    font-family: 'Open';
+    color: #741532;
+    padding: 5px;
+}
+
+input {
+    font-family: 'Open';
+    
+    width: 100%;
+    font-weight: bold;
+    margin-left: 1px;
+    padding: 5px 5px 5px 50px;
+}
+
+button {
+    height: 30px;
+    background-color: rgb(238, 201, 45);
+    color: #741532;
+    font-weight: bolder;
+    font-family: 'Open';
+    width: 100%;
+    padding: 5px;
+}
+
+/* Fondo del formulario de entrada */
+.backgroundinput {
+    background-color: #FFFF;
+    margin-left: 300px;
+    padding: 40px 15px 2px 15px;
+    border-radius: 15px;
+    height: 300px;
+    width: 50%;
+}
+
+/* Estilo de los mensajes de error */
+.messages {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    width: 300px;
+    max-width: 90%;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    background-color: #f9f9f9;
+}
+
+/* Estilos para los mensajes flash */
+.flashes {
+    list-style-type: none;
+    padding: 0;
+}
+
+.flashes li {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+/* Estilos para mostrar los mensajes */
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    width: 300px;
+    max-width: 90%;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    background-color: #f9f9f9;
+}

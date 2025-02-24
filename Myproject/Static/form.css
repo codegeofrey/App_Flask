@@ -1,0 +1,9 @@
+.body{
+    margin: 0px;
+    padding: 0px;
+    display: grid;
+}
+
+h1{
+    padding-left: 100px;
+}
