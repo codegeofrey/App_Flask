@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Requerimientos de Horarios</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='form.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Requerimiento de Horarios</h1>
+        
+        <form id="requerimiento-form">
+            <div class="form-group">
+                <label for="asunto">Asunto:</label>
+                <input type="text" id="asunto" name="asunto" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="perfil">Nombre de Perfil:</label>
+                <input type="text" id="perfil" name="perfil" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="mensaje">Mensaje:</label>
+                <textarea id="mensaje" name="mensaje" rows="4"></textarea>
+            </div>
+            
+            <div class="date-time" id="fecha-hora">
+                Fecha y hora: <span id="datetime"></span>
+            </div>
+            
+            <div class="form-group" style="margin-top: 20px;">
+                <button type="submit">Enviar Requerimiento</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

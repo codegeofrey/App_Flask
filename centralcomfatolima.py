@@ -207,5 +207,9 @@ def home():
 
     return render_template('formularioinput.html')
 
+@app.route('/requerimientos')
+def requerimientos():
+    return render_template('EnviarRQ.html')
+
 if __name__ == '__main__':
     app.run(debug=True, port=4000)  
