@@ -1,30 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/correo.css') }}">
     <title>ComfaChannel</title>
 </head>
-<body>
-    <div class="Main">
-        <div class="Submain">
-        
-                <img src="/static/comfachannel_mark.png" alt=""  width="98" height="100">
-                <a href="/Templates/EnviarRQ.html"> Nuevo Correo </a>
-                <a href="">Inbox </a>
-                <a href="">Destacados</a>
-                <a href="">Papelera</a>
-                <a href="">Configuracion</a>
 
-                 <div class="bandeja">
-                    <nav>
-                    <p>Principal</p>
-                    <p>No leido</p>
+<body>
+
+    <div aria-orientation="first-bar">
+    <div class="Main">
+        <div class="sidebar">
+            <img src="/static/comfachannel_mark.png" alt= srcset="">    
+            <ul class="menu-lateral">
+                <li><a href="/requerimientos">Nuevo Correo</a></li>
+                <li><a href="">Inbox</a></li>
+                <li><a href="">Destacados</a></li>
+                <li><a href="">Papelera</a></li>
+                <li><a href="">Configuración</a></li>
+            </ul>
+        </div>
+            <div class="bandeja">
+                <nav>
+                    <p><a href="#">Principal</a></p>
+                    <p><a href="#">No leido</a></p>
                 </nav>
-                
-                 </div>
+                <p></p>
+            </div>
 
         </div>
     </div>
 </body>
+
 </html>

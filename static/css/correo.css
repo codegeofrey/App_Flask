@@ -1,0 +1,87 @@
+/* Estilos generales */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* Contenedor principal */
+.Main {
+    display: flex; /* Divide el contenedor en dos columnas */
+    height: 100vh; /* Ocupa toda la altura de la ventana */
+}
+
+/* Sidebar (menú lateral) */
+.sidebar {
+    width: 200px; /* Ancho del sidebar */
+    background-color: #2c3e50; /* Color de fondo oscuro */
+    padding: 20px; /* Espaciado interno */
+    color: #fff; /* Color del texto */
+    border-right: 2px solid #1a252f; /* Borde a la derecha */
+}
+
+.logo {
+    width: 50%; /* Ajusta el logo al ancho del sidebar */
+    margin-bottom: 20px; /* Espacio debajo del logo */
+}
+
+.menu-lateral {
+    list-style: none; /* Quita los puntos de la lista */
+    padding: 0; /* Elimina el padding predeterminado */
+    margin: 0; /* Elimina el margen predeterminado */
+}
+
+.menu-lateral li {
+    margin-bottom: 15px; /* Espacio entre cada elemento de la lista */
+}
+
+.menu-lateral li a {
+    text-decoration: none; /* Quita el subrayado de los enlaces */
+    color: #fff; /* Color del texto */
+    font-size: 16px; /* Tamaño de la fuente */
+    display: block; /* Hace que el enlace ocupe todo el ancho del li */
+    padding: 8px; /* Espaciado interno para los enlaces */
+    border: 1px solid #34495e; /* Borde alrededor de cada enlace */
+    border-radius: 4px; /* Bordes redondeados */
+    transition: background-color 0.3s; /* Transición suave */
+}
+
+.menu-lateral li a:hover {
+    background-color: #34495e; /* Cambia el fondo al pasar el mouse */
+    border-color: #fff; /* Cambia el color del borde al pasar el mouse */
+}
+
+/* Bandeja (contenido principal) */
+.bandeja {
+    flex: 1; /* Ocupa el resto del espacio */
+    padding: 20px; /* Espaciado interno */
+    background-color: #ecf0f1; /* Color de fondo claro */
+    border-left: 2px solid #bdc3c7; /* Borde a la izquierda */
+}
+
+.bandeja nav {
+    display: flex; /* Alinea "Principal" y "No leido" en una fila */
+    gap: 20px; /* Espacio entre los elementos */
+    margin-bottom: 20px; /* Espacio debajo de la navegación */
+}
+
+.bandeja nav p {
+    margin: 0; /* Elimina el margen predeterminado */
+    font-size: 18px; /* Tamaño de la fuente */
+    cursor: pointer; /* Cambia el cursor al pasar el mouse */
+    color: #333; /* Color del texto */
+    border: 1px solid #bdc3c7; /* Borde alrededor de cada elemento */
+    padding: 8px 12px; /* Espaciado interno */
+    border-radius: 4px; /* Bordes redondeados */
+    transition: all 0.3s; /* Transición suave */
+}
+
+.bandeja nav p:hover {
+    color: #000; /* Cambia el color del texto al pasar el mouse */
+    border-color: #000; /* Cambia el color del borde al pasar el mouse */
+    background-color: #f1c40f; /* Cambia el fondo al pasar el mouse */
+}

@@ -211,5 +211,9 @@ def home():
 def requerimientos():
     return render_template('EnviarRQ.html')
 
+@app.route('/inbox')
+def Comfachannel():
+    return render_template('Gestioncorreo.html')
+
 if __name__ == '__main__':
     app.run(debug=True, port=4000)  
