@@ -9,27 +9,34 @@
 </head>
 
 <body>
-
     <div aria-orientation="first-bar">
-    <div class="Main">
-        <div class="sidebar">
-            <img src="/static/comfachannel_mark.png" alt= srcset="">    
-            <ul class="menu-lateral">
-                <li><a href="/requerimientos">Nuevo Correo</a></li>
-                <li><a href="">Inbox</a></li>
-                <li><a href="">Destacados</a></li>
-                <li><a href="">Papelera</a></li>
-                <li><a href="">Configuración</a></li>
-            </ul>
-        </div>
+        <div class="Main">
+            <div class="sidebar">
+                <img src="/static/comfachannel_mark.png" alt="Logo ComfaChannel">
+                <ul class="menu-lateral">
+                    <li><a href="/requerimientos">Nuevo Correo</a></li>
+                    <li><a href="/inbox">Inbox</a></li>
+                    <li><a href="#">Destacados</a></li>
+                    <li><a href="#">Papelera</a></li>
+                    <li><a href="#">Configuración</a></li>
+                </ul>
+            </div>
             <div class="bandeja">
                 <nav>
                     <p><a href="#">Principal</a></p>
-                    <p><a href="#">No leido</a></p>
+                    <p><a href="#">No leído</a></p>
                 </nav>
-                <p></p>
+                <ul id="lista-mensajes">
+                    {% for req in requerimientos %}
+                    <li>
+                        <strong>Asunto: {{ req.asunto }}</strong><br>
+                        <strong>De: {{ req.perfil }}</strong><br>
+                        <p>{{ req.mensaje }}</p>
+                        <small>{{ req.fecha_envio }}</small>
+                    </li>
+                    {% endfor %}
+                </ul>
             </div>
-
         </div>
     </div>
 </body>

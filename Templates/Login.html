@@ -5,19 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
 </head>
 
 <body>
-
-    <form id="Login_request" method="POST">
-        <div class="token">
-            <input type="username" name="User#" placeholder="Ingresa tu Usuario">
-        </div>
-        <div class="token">
-            <input type="password" name="pass1" placeholder="Ingresa la contraseña">
-        </div>
-    </form>
-
+    <div class="login-container">
+        <h1>Iniciar Sesión|</h1><img src="/static/comfachannel_mark.png"  width="90px" height="80px" alt="log-comfa-channel">
+        <form method="POST" action="{{ url_for('login') }}">
+            <div class="token">
+                <input type="text" name="username" placeholder="Ingresa tu Usuario" required>
+            </div>
+            <div class="token">
+                <input type="password" name="password" placeholder="Ingresa la contraseña" required>
+            </div>
+            <button type="submit">Iniciar Sesión</button>
+        </form>
+    </div>
 </body>
 
 </html>

@@ -2,6 +2,9 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 import mysql.connector
 from datetime import datetime, time, timedelta
 import logging
+from functools import wraps
+from flask import session, redirect, url_for, flash
+
 
 # Configurar logging
 logging.basicConfig(level=logging.DEBUG)
@@ -207,13 +210,106 @@ def home():
 
     return render_template('formularioinput.html')
 
-@app.route('/requerimientos')
-def requerimientos():
-    return render_template('EnviarRQ.html')
+
+
+def login_required(f):
+    @wraps(f)
+    def wrapper(*args, **kwargs):
+        if 'user_id' not in session:  # Verificar si el usuario ha iniciado sesión
+            flash('Debes iniciar sesión para acceder a esta página.', 'error')
+            return redirect(url_for('login'))  # Redirigir al login
+        return f(*args, **kwargs)
+    return wrapper
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+
+        conn = get_db_connection()
+        cursor = conn.cursor(dictionary=True)
+        try:
+            cursor.execute('''
+                SELECT * FROM usuarios
+                WHERE username = %s AND password = %s AND estado = 'activo'
+            ''', (username, password))
+            usuario = cursor.fetchone()
+
+            if usuario:
+                # Almacenar el ID del usuario en la sesión
+                session['user_id'] = usuario['id']
+                session['rol'] = usuario['rol']  # Almacenar el rol del usuario en la sesión
+                flash('Inicio de sesión exitoso.', 'success')
+                return redirect(url_for('Comfachannel'))  # Redirigir a la bandeja de entrada
+            else:
+                flash('Usuario o contraseña incorrectos, o el usuario está inactivo.', 'error')
+        except Exception as e:
+            logger.error(f"Error en el sistema: {str(e)}")
+            flash('Error en el sistema.', 'error')
+        finally:
+            cursor.close()
+            conn.close()
+
+    return render_template('Login.html')
+
 
 @app.route('/inbox')
+@login_required  
 def Comfachannel():
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)  # Usar dictionary=True para obtener resultados como diccionarios
+    try:
+        cursor.execute('''
+            SELECT * FROM requerimientos
+            ORDER BY fecha_envio DESC
+        ''')
+        requerimientos = cursor.fetchall()
+    except Exception as e:
+        logger.error(f"Error al obtener requerimientos: {str(e)}")
+        flash('Error al cargar los requerimientos.', 'error')
+        requerimientos = []
+    finally:
+        cursor.close()
+        conn.close()
+
+    return render_template('Gestioncorreo.html', requerimientos=requerimientos)
+
+
+@app.route('/requerimientos', methods=['GET', 'POST'])
+def requerimientos():
+    if request.method == 'POST':
+        asunto = request.form.get('asunto')
+        perfil = request.form.get('perfil')
+        mensaje = request.form.get('mensaje')
+
+        # Depuración: Verifica si los datos llegan correctamente
+        print(f"Asunto: {asunto}, Perfil: {perfil}, Mensaje: {mensaje}")
+
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        try:
+            # Depuración: Verifica la consulta SQL
+            print("Ejecutando consulta SQL...")
+            cursor.execute('''
+                INSERT INTO requerimientos (asunto, perfil, mensaje)
+                VALUES (%s, %s, %s)
+            ''', (asunto, perfil, mensaje))
+            conn.commit()
+            print("Datos insertados correctamente.")  # Depuración
+            flash('Requerimiento enviado correctamente.', 'success')
+        except Exception as e:
+            logger.error(f"Error al enviar requerimiento: {str(e)}")
+            flash('Error al enviar el requerimiento.', 'error')
+        finally:
+            cursor.close()
+            conn.close()
+
+        return redirect(url_for('requerimientos'))
+
     return render_template('Gestioncorreo.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=4000)  

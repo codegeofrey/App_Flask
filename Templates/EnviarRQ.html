@@ -6,6 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de Requerimientos de Horarios</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}">
+    <script>
+        // Enviar requerimiento
+        document.getElementById('requerimiento-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const asunto = document.getElementById('asunto').value;
+            const perfil = document.getElementById('perfil').value;
+            const mensaje = document.getElementById('mensaje').value;
+
+            fetch('/requerimientos', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ asunto, perfil, mensaje })
+            }).then(response => response.json())
+              .then(data => {
+                  if (data.estado === "Requerimiento enviado correctamente") {
+                      alert("Requerimiento enviado correctamente");
+                      window.location.href = "/inbox";  // Redirigir a la bandeja de entrada
+                  } else {
+                      alert("Error al enviar el requerimiento");
+                  }
+              });
+        });
+
+        // Mostrar fecha y hora actual
+        function actualizarFechaHora() {
+            const ahora = new Date();
+            const fechaHora = ahora.toLocaleString();
+            document.getElementById('datetime').textContent = fechaHora;
+        }
+        setInterval(actualizarFechaHora, 1000);  // Actualizar cada segundo
+        actualizarFechaHora();  // Mostrar la fecha y hora al cargar la página
+    </script>
 </head>
 
 <body>
@@ -14,8 +46,7 @@
     </div>
     <div class="container">
         <h1>Requerimiento de Horarios</h1>
-
-        <form id="requerimiento-form">
+        <form id="requerimiento-form" method="POST" action="{{ url_for('requerimientos') }}">
             <div class="form-group">
                 <label for="asunto">Asunto:</label>
                 <input type="text" id="asunto" name="asunto" required>
@@ -28,7 +59,7 @@
 
             <div class="form-group">
                 <label for="mensaje">Mensaje:</label>
-                <textarea id="mensaje" name="mensaje" rows="4"></textarea>
+                <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
             </div>
 
             <div class="date-time" id="fecha-hora">
@@ -37,11 +68,9 @@
 
             <div class="form-group" style="margin-top: 20px;">
                 <button type="submit">Enviar Requerimiento</button>
-            </div>
+            </div>  
         </form>
     </div>
-
-
 </body>
 
 </html>

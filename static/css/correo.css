@@ -2,7 +2,9 @@
 body, html {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
 }
 
 * {
@@ -11,77 +13,107 @@ body, html {
 
 /* Contenedor principal */
 .Main {
-    display: flex; /* Divide el contenedor en dos columnas */
-    height: 100vh; /* Ocupa toda la altura de la ventana */
+    display: flex;
+    height: 100vh;
 }
 
 /* Sidebar (menú lateral) */
 .sidebar {
-    width: 200px; /* Ancho del sidebar */
-    background-color: #2c3e50; /* Color de fondo oscuro */
-    padding: 20px; /* Espaciado interno */
-    color: #fff; /* Color del texto */
-    border-right: 2px solid #1a252f; /* Borde a la derecha */
+    width: 250px;
+    background-color: #2c3e50;
+    padding: 20px;
+    color: #fff;
+    border-right: 2px solid #1a252f;
 }
 
-.logo {
-    width: 50%; /* Ajusta el logo al ancho del sidebar */
-    margin-bottom: 20px; /* Espacio debajo del logo */
+.sidebar img {
+    width: 80%;
+    margin-bottom: 20px;
 }
 
 .menu-lateral {
-    list-style: none; /* Quita los puntos de la lista */
-    padding: 0; /* Elimina el padding predeterminado */
-    margin: 0; /* Elimina el margen predeterminado */
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .menu-lateral li {
-    margin-bottom: 15px; /* Espacio entre cada elemento de la lista */
+    margin-bottom: 15px;
 }
 
 .menu-lateral li a {
-    text-decoration: none; /* Quita el subrayado de los enlaces */
-    color: #fff; /* Color del texto */
-    font-size: 16px; /* Tamaño de la fuente */
-    display: block; /* Hace que el enlace ocupe todo el ancho del li */
-    padding: 8px; /* Espaciado interno para los enlaces */
-    border: 1px solid #34495e; /* Borde alrededor de cada enlace */
-    border-radius: 4px; /* Bordes redondeados */
-    transition: background-color 0.3s; /* Transición suave */
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    display: block;
+    padding: 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
 }
 
 .menu-lateral li a:hover {
-    background-color: #34495e; /* Cambia el fondo al pasar el mouse */
-    border-color: #fff; /* Cambia el color del borde al pasar el mouse */
+    background-color: #34495e;
 }
 
-/* Bandeja (contenido principal) */
+/* Bandeja de entrada */
 .bandeja {
-    flex: 1; /* Ocupa el resto del espacio */
-    padding: 20px; /* Espaciado interno */
-    background-color: #ecf0f1; /* Color de fondo claro */
-    border-left: 2px solid #bdc3c7; /* Borde a la izquierda */
+    flex: 1;
+    padding: 20px;
+    background-color: #fff;
 }
 
 .bandeja nav {
-    display: flex; /* Alinea "Principal" y "No leido" en una fila */
-    gap: 20px; /* Espacio entre los elementos */
-    margin-bottom: 20px; /* Espacio debajo de la navegación */
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
 }
 
 .bandeja nav p {
-    margin: 0; /* Elimina el margen predeterminado */
-    font-size: 18px; /* Tamaño de la fuente */
-    cursor: pointer; /* Cambia el cursor al pasar el mouse */
-    color: #333; /* Color del texto */
-    border: 1px solid #bdc3c7; /* Borde alrededor de cada elemento */
-    padding: 8px 12px; /* Espaciado interno */
-    border-radius: 4px; /* Bordes redondeados */
-    transition: all 0.3s; /* Transición suave */
+    margin: 0;
+    font-size: 16px;
+    cursor: pointer;
+    color: #333;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: all 0.3s;
 }
 
 .bandeja nav p:hover {
-    color: #000; /* Cambia el color del texto al pasar el mouse */
-    border-color: #000; /* Cambia el color del borde al pasar el mouse */
-    background-color: #f1c40f; /* Cambia el fondo al pasar el mouse */
+    background-color: #f1c40f;
+    color: #000;
+}
+
+/* Lista de mensajes */
+#lista-mensajes {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#lista-mensajes li {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+    transition: box-shadow 0.3s;
+}
+
+#lista-mensajes li:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#lista-mensajes li strong {
+    color: #2c3e50;
+    font-size: 16px;
+}
+
+#lista-mensajes li p {
+    margin: 10px 0;
+    color: #555;
+}
+
+#lista-mensajes li small {
+    color: #888;
+    font-size: 14px;
 }
