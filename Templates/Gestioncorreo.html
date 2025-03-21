@@ -6,6 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/correo.css') }}">
     <title>ComfaChannel</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.eliminar-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    eliminarRequerimiento(id);
+                });
+            });
+        });
+
+        function eliminarRequerimiento(id) {
+            if (confirm('¿Estás seguro de que quieres eliminar este requerimiento?')) {
+                fetch(`/eliminar_requerimiento/${id}`, {
+                    method: 'DELETE',
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Eliminar el elemento de la lista en el frontend
+                        const elemento = document.getElementById(`requerimiento-${id}`);
+                        if (elemento) {
+                            elemento.remove();
+                        }
+                        alert(data.message);
+                    } else {
+                        alert('Error al eliminar el requerimiento: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -28,11 +62,12 @@
                 </nav>
                 <ul id="lista-mensajes">
                     {% for req in requerimientos %}
-                    <li>
+                    <li id="requerimiento-{{ req.id }}">
                         <strong>Asunto: {{ req.asunto }}</strong><br>
                         <strong>De: {{ req.perfil }}</strong><br>
                         <p>{{ req.mensaje }}</p>
                         <small>{{ req.fecha_envio }}</small>
+                        <button data-id="{{ req.id }}" class="eliminar-btn">Eliminar</button>
                     </li>
                     {% endfor %}
                 </ul>

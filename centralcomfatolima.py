@@ -3,7 +3,7 @@ import mysql.connector
 from datetime import datetime, time, timedelta
 import logging
 from functools import wraps
-from flask import session, redirect, url_for, flash
+from flask import session, redirect, url_for, flash ,jsonify
 
 
 # Configurar logging
@@ -222,6 +222,28 @@ def login_required(f):
     return wrapper
 
 
+
+@app.route('/inbox')
+def Comfachannel():
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)  # Usar dictionary=True para obtener resultados como diccionarios
+    try:
+        cursor.execute('''
+            SELECT * FROM requerimientos
+            ORDER BY fecha_envio DESC
+        ''')
+        requerimientos = cursor.fetchall()
+    except Exception as e:
+        logger.error(f"Error al obtener requerimientos: {str(e)}")
+        flash('Error al cargar los requerimientos.', 'error')
+        requerimientos = []
+    finally:
+        cursor.close()
+        conn.close()
+
+    return render_template('Gestioncorreo.html', requerimientos=requerimientos)
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -255,28 +277,6 @@ def login():
     return render_template('Login.html')
 
 
-@app.route('/inbox')
-@login_required  
-def Comfachannel():
-    conn = get_db_connection()
-    cursor = conn.cursor(dictionary=True)  # Usar dictionary=True para obtener resultados como diccionarios
-    try:
-        cursor.execute('''
-            SELECT * FROM requerimientos
-            ORDER BY fecha_envio DESC
-        ''')
-        requerimientos = cursor.fetchall()
-    except Exception as e:
-        logger.error(f"Error al obtener requerimientos: {str(e)}")
-        flash('Error al cargar los requerimientos.', 'error')
-        requerimientos = []
-    finally:
-        cursor.close()
-        conn.close()
-
-    return render_template('Gestioncorreo.html', requerimientos=requerimientos)
-
-
 @app.route('/requerimientos', methods=['GET', 'POST'])
 def requerimientos():
     if request.method == 'POST':
@@ -308,7 +308,23 @@ def requerimientos():
 
         return redirect(url_for('requerimientos'))
 
-    return render_template('Gestioncorreo.html')
+    return render_template('EnviarRQ.html')
+
+@app.route('/eliminar_requerimiento/<int:id>', methods=['DELETE'])
+def eliminar_requerimiento(id):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    try:
+        # Eliminar el requerimiento de la base de datos
+        cursor.execute('DELETE FROM requerimientos WHERE id = %s', (id,))
+        conn.commit()
+        return jsonify({'success': True, 'message': 'Requerimiento eliminado correctamente'})
+    except Exception as e:
+        conn.rollback()
+        return jsonify({'success': False, 'message': str(e)})
+    finally:
+        cursor.close()
+        conn.close()
 
 
 if __name__ == '__main__':

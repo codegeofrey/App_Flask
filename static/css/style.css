@@ -1,42 +1,26 @@
-/* Reset de márgenes y padding para todos los elementos */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Para que el padding y el borde se incluyan en el tamaño total */
+    box-sizing: border-box;
 }
 
-/* Estilos generales */
+html, body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden; /* Evita el scroll */
+}
+
 body {
-    font-family: 'Open', sans-serif;
-    display: block;
-    padding-bottom: 50px; /* Añadido para evitar que el contenido quede oculto debajo del footer */
-    overflow-x: hidden; /* Para evitar desplazamiento horizontal no deseado */
-    overflow-y: hidden;
-}
-
-
-
-
-/* Fuentes personalizadas */
-@font-face {
-    font-family: 'Open';
-    src: url('/static/fuentes/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'boli';
-    src: url('/static/fuentes/Mv_boli/mvboli.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'Swiss721';
-    src: url('/static/fuentes/fuente_swiss721/Swiss721Bold.ttf') format('truetype');
+    background-image: url('/static/img/cielo.png'); /* Ruta de la imagen */
+    background-repeat: no-repeat;
+    background-size: 100% 100%; /* Hace que la imagen cubra exactamente la pantalla */
+    background-position: center;
 }
 
 /* Estilos para el contenedor del slider superior */
-.slider-container {
+.slider-header{
     white-space: nowrap;
-    background-color: rgb(123, 22, 52);
+    background-color: #741532;
     position: fixed; /* Fijo en la parte superior */
     top: 0;
     left: 0;
@@ -50,14 +34,26 @@ body {
 /* Estilos para el texto del slider superior */
 .Front {
     margin-left: 440px;
-    color: #f9f9f9;
-    font-family: 'open';
+    color: white;
+    font-family: 'Comic Sans MS', cursive;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Para Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+    appearance:calc();
 }
 
 /* Estilos generales para el slider (footer) */
-.slider-footer {
+.slider-header {
     white-space: unset;
-    background-color: rgb(120, 18, 49);
+    background-color: #741532;
     position: fixed; /* Fijo en la parte inferior */
     bottom: 0; /* Cambiado a 'bottom: 0' para que se fije en el pie */
     left: 0;
@@ -74,25 +70,18 @@ body {
 /* Contenedor que agrupa todos los textos dentro del slider footer */
 .slider-wrapper {
     display: flex;
-    animation: scroll 30s linear infinite; /* Animación para desplazar los textos */
+    animation: scroll 40s linear infinite; /* Animación para desplazar los textos */
     flex-wrap: nowrap;
 }
 
 /* Cada elemento dentro del slider */
 .slider {
-    font-family: 'boli';
+    font-family: 'Comic Sans MS', cursive;
     font-size: 18px;
     color: white;
     padding: 0 400px; /* Espaciado entre los elementos */
     white-space: nowrap;
     flex-shrink: 0; /* Para evitar que los elementos se encojan */
-}
-
-/* Imagen dentro del slider */
-.slider img {
-    max-width: 100px;
-    height: auto;
-    margin-left: 40px; /* Añadí un margen a la izquierda para la imagen */
 }
 
 /* Animación para el desplazamiento de los textos */
@@ -105,51 +94,108 @@ body {
     }
 }
 
-/* Estilos para los formularios */
-.input_user {
-    font-family: 'Open';
-    justify-content: flex-end;
-    margin-top: 14%;
-    padding-left: 37%;
-    padding-right: 10%;
-    margin-bottom: 20%;
+/* Empresa Comfatolima */
+img{
+    margin-top:40px;
+    width:100%;
+    height: 630px;
 }
 
-h3 {
-    font-weight: bolder;
-    font-size: 20px;
-    font-family: 'Open';
+/* Apartado Página */
+
+/* Estilos para el contenedor del aside */
+aside {
+    position: absolute; /* Permite ajustar su ubicación */
+    left: 10px; /* Lo mantiene pegado a la izquierda */
+    width: 50%; /* Reduce un poco el ancho */
+    height: 90vh; /* Reduce la altura para que no ocupe tanto espacio */
+    bottom: -35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilos para la imagen dentro del aside */
+aside img {
+    width: 100%; /* Hace que la imagen sea un poco más estrecha dentro del aside */
+    height: 90%; /* Reduce un poco la altura para que no sea tan grande */
+    object-fit: contain; /* Evita que la imagen se deforme y la ajusta bien */
+    max-width: 650px; /* Limita el tamaño máximo para que no crezca demasiado */
+    max-height: 500px; /* Limita la altura máxima */
+}
+
+.container {
+    position: absolute; /* Permite posicionarlo de manera precisa */
+    right: 80px; /* Lo pega a la derecha */
+    top: 58%; /* Lo centra verticalmente */
+    transform: translateY(-50%); /* Corrige el centrado */
+    width: 450px; /* Define un ancho para que se vea bien */
+    height: 330px;
+    background-color: rgba(255, 255, 255, 0.8); /* Blanco con 60% de opacidad */
     color: #741532;
-    padding: 5px;
+    font-family: 'MV Boli', sans-serif;
+    padding: 40px;
+    border-radius: 40px; /* Bordes redondeados */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8); /* Agrega sombra para mejor visualización */
+    font-weight: 900;
+}
+
+/* Ajustes al formulario */
+.backgroundinput {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 input {
-    font-family: 'Open';
-    
-    width: 100%;
-    font-weight: bold;
-    margin-left: 1px;
-    padding: 5px 5px 5px 50px;
+    margin-top: 10px;
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 40px;
+    border: 2px solid #741532;
+    border-radius: 5px;
+    font-weight: 900;
+    color: black;
 }
 
-button {
-    height: 30px;
-    background-color: rgb(238, 201, 45);
+button.envio {
+    width: 90%;
+    padding: 10px;
+    background-color: rgb(247, 203, 28);
     color: #741532;
-    font-weight: bolder;
-    font-family: 'Open';
-    width: 100%;
-    padding: 5px;
+    font-weight: 900;
+    border: none;
+    border-radius: 5px;
+    cursor:pointer;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
 }
 
-/* Fondo del formulario de entrada */
-.backgroundinput {
-    background-color: #FFFF;
-    margin-left: 300px;
-    padding: 40px 15px 2px 15px;
-    border-radius: 15px;
-    height: 300px;
-    width: 50%;
+button.envio:active {
+    background-color: rgb(245, 211, 74);
+    transform: translateY(2px);
+}
+
+/* Estilos para el footer */
+.slider-footer {
+    background-color: #741532; /* Mismo color que el slider-header */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%; /* Ancho completo */
+    height: 45px; /* Misma altura que el header */
+    display: flex;
+    align-items:center;
+    justify-content: center; /* Centra la imagen horizontalmente */
+    z-index: 10;
+}
+
+/* Asegurar que la imagen esté bien centrada */
+.slider-footer img {
+    height: 80%; /* Ajusta la altura de la imagen para que no sobresalga */
+    max-height: 100%;
+    object-fit: contain; /* Evita que se deforme */
+    margin-top: 0px;
 }
 
 /* Estilo de los mensajes de error */

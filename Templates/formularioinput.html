@@ -3,46 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>INTERFAZ COMFATOLIMA</title>
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
-
-<header>
-    <div class="slider-container">
-        <div class="Front">
-            PROGRAMA REGISTRO Y ENTRADA COMFATOLIMA
-        </div>
-    </div>
-</header>
-
 <body>
-    <style>
-        body {
-            background-image: url('{{ url_for("static", filename="Comfatolimacentral.png") }}');
-            background-repeat: no-repeat; /* Esto evita que la imagen se repita */
-            background-size: 1250px 560px
-        }
 
-        
-    </style>
- 
-    <div class="persons"><img src="/Myproject/Static/groupofpersons.png" alt="100"></div>
-    
+    <header>
+        <div class="slider-header">
+            <div class="slider-wrapper">
+                <div class="slider">
+                    ¡Bienvenido Al Programa De Registro Entrada y Salida De Comfatolima! Por Favor Registre Su Cedula Dentro Del
+                    Rango Establecido!
+                </div>
+                <div class="slider">
+                    Horario De Lunes A Jueves: 7:30Am A 12:30Pm - 2:00Pm A 6:00Pm | Viernes De 7:30Am A 12:30Pm - 2:00Pm A 4:00Pm
+                </div>
+                <div class="slider">
+                    &copy; Comfatolima Caja De Compensacion Familiar Del Tolima
+                </div>   
+            </div>
+        </div>
+    </header>
 
+    <section>
+        <img src="/static/img/empresa.png" alt="logo">
+    </section>
 
-    <div class="input_user">
+    <aside>
+        <img src="/static/img/persons.png" alt="Personas">
+    </aside>
+
+    <div class="container">
         <form action="" method="POST">
             <div class="backgroundinput">
-                <h3>Ingrese su número de documento</h3><br>
-                <input type="text" id="Cedula" name="Cedula" placeholder="Ingrese su cédula" required><br><br>
-                <button type="submit" class="envio">Registrar</button>
+                <h2>REGISTRO DE ENTRADA Y SALIDA COMFATOLIMA</h2><br>
+                <input type="number" id="Cedula" name="Cedula" placeholder="Ingrese su cédula" required>
+                <button type="submit" class="envio">REGISTRAR</button>
             </div>
         </form>
     </div>
-    
-
-    <div class="persons"><img src="/Myproject/Static/groupofpersons.png" alt="100" width="100"></div>
-    
 
     <div class="messages {% if get_flashed_messages() %} visible {% else %} hidden {% endif %}" id="error-message">
         {% with messages = get_flashed_messages(with_categories=true) %}
@@ -71,30 +70,13 @@
             }
         };
     </script>
-    
+
     <footer>
         <div class="slider-footer">
-            <div class="slider-wrapper">
-                <div class="slider">
-                    ¡Bienvenido al programa De registro entrada y salida De Comfatolima! por favor registre su Cedula dentro del
-                    rango establecido!
-                </div>
-                <div class="slider">
-                    Horario Desde 7:30 am A 12:30 pm - 2:00 pm A 6:00 pm |Lunes a Jueves| Los viernes hasta las 4 pm.
-                </div>
-                <div class="slider">
-                    &copy; Comfatolima Caja De Compensacion Familiar Del Tolima
-                </div>   
-                <div class="slider">
-                    <img src="{{ url_for('static', filename='Fcomfa.png') }}"  width=alt="Fondo_comfatolima">
-                    <img src="{{ url_for('static', filename='Fcomfa.png') }}"  width=alt="Fondo_comfatolima">
-                    <img src="{{ url_for('static', filename='Fcomfa.png') }}"  width=alt="Fondo_comfatolima">
-                    <img src="{{ url_for('static', filename='Fcomfa.png') }}"  width=alt="Fondo_comfatolima">
-                    <img src="{{ url_for('static', filename='Fcomfa.png') }}"  width=alt="Fondo_comfatolima">
-                </div>
-            </div>
+            <img src="/static/img/fcomfa.png" alt="Fondo_comfatolima">
         </div>
     </footer>
+    
 
 </body>
 </html>

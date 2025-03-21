@@ -66,6 +66,9 @@ body, html {
     display: flex;
     gap: 20px;
     margin-bottom: 20px;
+    border-bottom: solid 1px #938f8f;
+    box-shadow: 15px 10px  205px ;
+    width: 1000px;
 }
 
 .bandeja nav p {
